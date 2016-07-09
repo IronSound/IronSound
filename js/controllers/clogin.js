@@ -2,7 +2,7 @@
 module.exports = function (app) {
     app.controller('LoginController', ['$scope', '$http', '$location', function ($scope, $http, $location) {
         $scope.name = '';
-        $scope.password = '';
+        // $scope.password = '';
 
         $scope.login = function () {
             console.log(`${$scope.name} in as we speak`);
@@ -12,12 +12,12 @@ module.exports = function (app) {
                 method: 'post',
                 data: {
                     name: $scope.name,
-                    password: $scope.password,
+                    password: 'password123',
                 },
             }).then(function () {
-                $location.path('/tomalikes');
+                $location.path('/library');
             }).catch(function () {
-                console.error('INTRUDER');
+                console.error('login failed');
             });
         };
     }]);

@@ -16,7 +16,7 @@ app.config(['$routeProvider', function ($routeProvider) {
       templateUrl: 'templates/tlogin.html',
     })
     .when('/library', {
-      controller: 'LibraryController', 'HeaderController', 'FooterController',
+      controller: 'LibraryController',
       templateUrl: 'templates/tlibrary.html',
     })
 

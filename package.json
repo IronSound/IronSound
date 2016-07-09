@@ -18,7 +18,8 @@
   "homepage": "https://github.com/winstonwaters/IronSound#readme",
   "devDependencies": {
     "babel-preset-es2015": "^6.9.0",
-    "gulp-babel": "^6.1.2"
+    "gulp-babel": "^6.1.2",
+    "gulp-browserify": "^0.5.1"
   },
   "dependencies": {
     "gulp-browserify": "^0.5.1",
