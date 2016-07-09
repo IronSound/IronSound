@@ -1,15 +1,42 @@
 <!DOCTYPE html>
 <html>
 
+<html ng-app="IronSoundApp">
+
 <head>
     <meta charset="utf-8">
     <title>Iron Sound</title>
     <link rel="normalize" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.css">
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular-route.js"></script>
+    <script src="js/app.js"></script>
 </head>
 
 <body>
+  <h1>Iron Sound</h1>
+  <h4>Where coding and clasical tunes come alive.</h4>
+      <!-- <main ng-view></main> -->
 
+<!-- login page -->
+      <h2>Login to your Iron Sound Profile:</h2>
+
+      <input type="text" ng-model="name" placeholder="Username">
+      <input type="password" ng-model="name" placeholder="Password">
+      <button ng-click="login()">Let's play some tunes.</button>
+
+<!-- library page -->
+
+    <h2>Todays list of songs:</h2>
+    <ul>
+      <li ng-repeat="Available songs:">
+        <img ng-src="{{ tom.filename }}" />
+        <p>
+            <button ng-click="fav(tom, true)">Add Song</button>  
+        </p>
+    </li>
+    </ul>
 </body>
 
 </html>
