@@ -2,10 +2,6 @@ let app = angular.module('IronSoundApp', ['ngRoute']);
 
 require('./services/servlibrary.js')(app);
 require('./services/servlogin.js')(app);
-require('./services/servplaylist.js')(app);
-require('./controllers/cplaylist.js')(app);
-require('./controllers/cfooter.js')(app);
-require('./controllers/cheader.js')(app);
 require('./controllers/clibrary.js')(app);
 require('./controllers/clogin.js')(app);
 
@@ -23,8 +19,5 @@ app.config(['$routeProvider', function ($routeProvider) {
       controller: 'LibraryController', 'HeaderController', 'FooterController',
       templateUrl: 'templates/tlibrary.html',
     })
-    .when('/playlist', {
-      controller: 'PlaylistController', 'HeaderController', 'FooterController',
-      templateUrl: 'templates/tplaylist.html',
-    })
+
 }])
