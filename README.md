@@ -24,5 +24,7 @@ Add a comment:
   
   route = `POST`, path = `"/add-comment"`, data = `Comment` object (contains String `comment`)
   
+Like a song:
 
+  route = 'POST', path = "/like"
   
