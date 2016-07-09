@@ -1,7 +1,9 @@
 package com.theironyard.controllers;
 
+import com.theironyard.entities.Like;
 import com.theironyard.entities.Song;
 import com.theironyard.entities.User;
+import com.theironyard.services.LikeRepository;
 import com.theironyard.services.SongRepository;
 import com.theironyard.services.UserRepository;
 import com.theironyard.utilities.PasswordStorage;
@@ -28,6 +30,9 @@ public class IronSoundController {
     @Autowired
     SongRepository songs;
 
+    @Autowired
+    LikeRepository likes;
+
     @PostConstruct
     public void init() throws SQLException {
         Server.createWebServer().start();
@@ -44,6 +49,31 @@ public class IronSoundController {
         User user = users.findByName(username);
         Song song = new Song(trackId, user);
         songs.save(song);
+    }
+
+    @RequestMapping(path = "/likes", method = RequestMethod.POST)
+    public void addLike(HttpSession session, @RequestBody Like like) throws Exception {
+        String username = (String) session.getAttribute("username");
+        if (username == null) {
+            throw new Exception("You must be logged in.");
+        }
+
+        User user = users.findByName(username);
+        if (user == null) {
+            throw new Exception("Sorry cannot find this user in the database.");
+        }
+
+        Song song = songs.findOne(like.getLikeid());
+        if (song == null) {
+            throw new Exception("Song is not in the list");
+        }
+
+        song.setLikevotes(song.getLikevotes() + (like.isGoodsong() ? 1 : -1));
+        songs.save(song);
+
+        like.setSong(song);
+        like.setUser(user);
+        likes.save(like);
     }
 
     @RequestMapping(path = "/login", method = RequestMethod.POST)
