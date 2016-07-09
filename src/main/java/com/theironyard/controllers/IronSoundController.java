@@ -1,8 +1,10 @@
 package com.theironyard.controllers;
 
+import com.theironyard.entities.Comment;
 import com.theironyard.entities.Like;
 import com.theironyard.entities.Song;
 import com.theironyard.entities.User;
+import com.theironyard.services.CommentRepository;
 import com.theironyard.services.LikeRepository;
 import com.theironyard.services.SongRepository;
 import com.theironyard.services.UserRepository;
@@ -33,6 +35,9 @@ public class IronSoundController {
     @Autowired
     LikeRepository likes;
 
+    @Autowired
+    CommentRepository comments;
+
     @PostConstruct
     public void init() throws SQLException {
         Server.createWebServer().start();
@@ -43,12 +48,56 @@ public class IronSoundController {
         return songs.findAll();
     }
 
-    @RequestMapping(path = "/songs", method = RequestMethod.POST)
-    public void addSong(HttpSession session, int trackId) {
+    @RequestMapping(path = "/add-song", method = RequestMethod.POST)
+    public void addSong(HttpSession session, int trackId) throws Exception {
         String username = (String) session.getAttribute("username");
+        if (username == null) {
+            throw new Exception("Not logged in.");
+        }
         User user = users.findByName(username);
+        if (user == null) {
+            throw new Exception("User not found.");
+        }
         Song song = new Song(trackId, user);
         songs.save(song);
+    }
+
+    @RequestMapping(path = "delete-song", method = RequestMethod.POST)
+    public void deleteSong(HttpSession session, int id) throws Exception {
+        String username = (String) session.getAttribute("username");
+        if (username == null) {
+            throw new Exception("Not logged in.");
+        }
+        User user = users.findByName(username);
+        if (user == null) {
+            throw new Exception("User not found.");
+        }
+        if (!user.getName().equals(songs.findOne(id).getUser().getName())) {
+            throw new Exception("You may only delete your own songs.");
+        }
+        songs.delete(id);
+    }
+
+    @RequestMapping(path = "/add-comment", method = RequestMethod.POST)
+    public void addComment(HttpSession session, @RequestBody Comment comment) throws Exception {
+        String username = (String) session.getAttribute("username");
+        if (username == null) {
+            throw new Exception("Not logged in.");
+        }
+        User user = users.findByName(username);
+        if (user == null) {
+            throw new Exception("User not found.");
+        }
+        Song song = songs.findOne(comment.getSongId());
+        if (song == null) {
+            throw new Exception("Song not found.");
+        }
+        song.setComments(song.getComments() + 1);
+        songs.save(song);
+
+        comment.setSong(song);
+        comment.setUser(user);
+        comments.save(comment);
     }
 
     @RequestMapping(path = "/likes", method = RequestMethod.POST)
