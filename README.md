@@ -14,7 +14,15 @@ Show songs:
   
 Add a song: 
 
-  route = `POST`, path = `"/songs"`, data = `int trackId`
+  route = `POST`, path = `"/add-song"`, data = `int trackId`
+  
+Delete a song:
+
+  route = `POST`, path = `"/delete-song"`, data = `int id`
+  
+Add a comment:
+  
+  route = `POST`, path = `"/add-comment"`, data = `Comment` object (contains String `comment`)
   
 
   
