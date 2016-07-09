@@ -15,6 +15,12 @@ public class Song {
     @Column(nullable = false)
     int trackId;
 
+    @Column(nullable = false)
+    int comments;
+
+    @Column(nullable = false)
+    int likedsong;
+
     @ManyToOne
     User user;
 
@@ -42,11 +48,27 @@ public class Song {
         this.trackId = trackId;
     }
 
+    public int getLikedsong() {
+        return likedsong;
+    }
+
+    public void setLikedsong(int likedsong) {
+        this.likedsong = likedsong;
+    }
+
     public User getUser() {
         return user;
     }
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public int getComments() {
+        return comments;
+    }
+
+    public void setComments(int comments) {
+        this.comments = comments;
     }
 }
