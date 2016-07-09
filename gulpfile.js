@@ -19,7 +19,7 @@ gulp.task('html', function(){
 
 //scss to css
 gulp.task('css', function(){
-  gulp.src('./sass/styles.scss')
+  gulp.src('./sass/main.scss')
    .pipe(sass())
    .pipe(gulp.dest('./public/css'));
 });
