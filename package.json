@@ -1,0 +1,29 @@
+{
+  "name": "ironsound",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/winstonwaters/IronSound.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/winstonwaters/IronSound/issues"
+  },
+  "homepage": "https://github.com/winstonwaters/IronSound#readme",
+  "devDependencies": {
+    "babel-preset-es2015": "^6.9.0",
+    "gulp-babel": "^6.1.2"
+  },
+  "dependencies": {
+    "gulp-browserify": "^0.5.1",
+    "gulp-minify": "0.0.12",
+    "gulp-sass": "^2.3.2",
+    "gulp-watch": "^4.3.8"
+  }
+}
