@@ -20,11 +20,11 @@ app.config(['$routeProvider', function ($routeProvider) {
       templateUrl: 'templates/tlogin.html',
     })
     .when('/library', {
-      controller: 'LibraryController',
+      controller: 'LibraryController', 'HeaderController', 'FooterController',
       templateUrl: 'templates/tlibrary.html',
     })
     .when('/playlist', {
-      controller: 'LibraryController',
+      controller: 'PlaylistController', 'HeaderController', 'FooterController',
       templateUrl: 'templates/tplaylist.html',
     })
 }])
