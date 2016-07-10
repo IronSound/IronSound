@@ -12,6 +12,7 @@ public class Song {
     @GeneratedValue
     int id;
 
+    @Column(nullable = false)
     Integer trackId;
 
     @Column(nullable = false)
