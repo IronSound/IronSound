@@ -59,6 +59,7 @@ public class IronSoundController {
             throw new Exception("User not found.");
         }
         //Song song = new Song(trackId, user);
+        song.setUser(user);
         songs.save(song);
 
         user.setTab(user.getTab() + 1);
