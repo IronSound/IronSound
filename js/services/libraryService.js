@@ -5,6 +5,7 @@ module.exports = function(app){
   //service stores user data
   app.factory('libraryService', ['$http', function($http){
 
+let addedSongs = [];
 
     return {
       addTrack: function (trackId){
