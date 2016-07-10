@@ -2,7 +2,7 @@
 
 User login: 
 
-  route = `POST`, path = `"/login"`, data = `User` object (contains Strings `name` & `password`) 
+  route = `POST`, path = `"/login"`, data = `User` object
   
 User logout:
 
@@ -14,17 +14,17 @@ Show songs:
   
 Add a song: 
 
-  route = `POST`, path = `"/add-song"`, data = `int trackId`
+  route = `POST`, path = `"/add-song"`, data = `Song` object
   
 Delete a song:
 
-  route = `POST`, path = `"/delete-song"`, data = `int id`
+  route = `POST`, path = `"/delete-song"`, data = `Song` object 
   
 Add a comment:
   
-  route = `POST`, path = `"/add-comment"`, data = `Comment` object (contains String `comment`)
+  route = `POST`, path = `"/add-comment"`, data = `Comment` object
   
 Like a song:
 
-  route = 'POST', path = "/like"
+  route = 'POST', path = `"/like"`, data = `Like` object 
   
