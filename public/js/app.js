@@ -25,9 +25,9 @@ module.exports = function(app) {
             artist: "Paul Wood"
         }, ];
 
-        $scope.add = function() {
-            console.log("Adding the song... hopefully")
-            return libraryService.addTrack(5)
+        $scope.add = function(trackId) {
+            console.log("Adding the song... hopefully", trackId)
+            return libraryService.addTrack(trackId)
         }
 
 
@@ -86,6 +86,7 @@ module.exports = function(app){
   //service stores user data
   app.factory('libraryService', ['$http', function($http){
 
+let addedSongs = [];
 
     return {
       addTrack: function (trackId){
