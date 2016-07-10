@@ -5,9 +5,9 @@ let app = angular.module('IronSoundApp', ['ngRoute']);
 require('./controllers/LibraryController.js')(app);
 require('./controllers/LoginController.js')(app);
 
-//services
-// require('./services/libraryService.js')(app);
-// require('./services/loginService.js')(app);
+// services
+require('./services/libraryService.js')(app);
+require('./services/loginService.js')(app);
 
 app.config(['$routeProvider', function ($routeProvider) {
   $routeProvider
