@@ -80,6 +80,9 @@ app.config(['$routeProvider', function ($routeProvider) {
   }).when('/library', {
     controller: 'LibraryController',
     templateUrl: 'templates/tlibrary.html'
+  }).when('/playlist', {
+    controller: 'playlistController',
+    templateUrl: 'templates/tplaylist.html'
   });
 }]);
 },{"./controllers/LibraryController.js":1,"./controllers/LoginController.js":2,"./controllers/headerController.js":3,"./services/libraryService.js":5,"./services/loginService.js":6}],5:[function(require,module,exports){
