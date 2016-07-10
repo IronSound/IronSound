@@ -12,8 +12,7 @@ public class Song {
     @GeneratedValue
     int id;
 
-    @Column(nullable = false)
-    int trackId;
+    Integer trackId;
 
     @Column(nullable = false)
     int comments;
@@ -27,7 +26,7 @@ public class Song {
     public Song() {
     }
 
-    public Song(int trackId, User user) {
+    public Song(Integer trackId, User user) {
         this.trackId = trackId;
         this.user = user;
     }
@@ -40,11 +39,11 @@ public class Song {
         this.id = id;
     }
 
-    public int getTrackId() {
+    public Integer getTrackId() {
         return trackId;
     }
 
-    public void setTrackId(int trackId) {
+    public void setTrackId(Integer trackId) {
         this.trackId = trackId;
     }
 
