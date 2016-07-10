@@ -1,5 +1,5 @@
 module.exports = function (app) {
-    app.controller('LibraryController', ['$scope', function ($scope) {
+    app.controller('LibraryController', ['$scope', 'libraryService', function ($scope, libraryService) {
         $scope.library = [
           {artist:"Paul Wood"},
           {artist:"Paul Wood"},
@@ -13,5 +13,11 @@ module.exports = function (app) {
           {artist:"Paul Wood"},
           {artist:"Paul Wood"},
         ];
+$scope.add = function () {
+  console.log ("Adding the song... hopefully")
+    return  libraryService.addTrack(5)
+}
+
     }]);
+
 }
