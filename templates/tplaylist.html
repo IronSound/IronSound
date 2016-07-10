@@ -3,8 +3,10 @@
   <h3>Songs Added</h3>
 
 
-    <ul>
-      <li></li>
-    </ul>
+  <ul>
+    <li ng-repeat="track in playlist">
+      <p>{{ track.artist }}{{track.song}}</p>
+    </li>
+  </ul>
 
 </div>

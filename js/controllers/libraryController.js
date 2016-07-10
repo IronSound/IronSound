@@ -7,12 +7,12 @@ module.exports = function(app) {
             song: "Sittin' Sideways",
             trackId: 1,
         }, {
-          artist: "Paul Wall",
-          song: "Sittin' Sideways",
+          artist: "Beyonce",
+          song: "Love on Top",
           trackId: 2,
         }, {
-          artist: "Paul Wall",
-          song: "Sittin' Sideways",
+          artist: "Stevie Wonder",
+          song: "Signed, Sealed, Delivered",
           trackId: 3,
         },
        ];
