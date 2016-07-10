@@ -1,0 +1,21 @@
+.log-in-form {
+  border: 1px solid #cacaca;
+  padding: 1rem;
+  border-radius: 3px; }
+
+h1.ng-scope {
+  text-align: center; }
+
+#logoIcon {
+  max-width: 6%;
+  margin-right: 1%; }
+
+.hidden {
+  display: none; }
+
+body {
+  background-color: #ccc;
+  font-family: Gotham;
+  color: #5c5c5c;
+  text-align: center;
+  justify-content: center; }

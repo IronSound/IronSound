@@ -1,0 +1,29 @@
+<!--
+<h2>Login to your Iron Sound Profile:</h2>
+
+<input type="text" ng-model="name" placeholder="Username">
+<input type="password" ng-model="password" placeholder="Password">
+<button ng-click="login()">Let's play some tunes.</button> -->
+
+
+<!-- Login Template -->
+<div class="row">
+  <div class="medium-6 medium-centered large-4 large-centered columns">
+
+    <form>
+      <div class="row column log-in-form">
+        <h4 class="text-center">Log in with you email account</h4>
+        <label>Email
+          <input type="text" ng-model="name" placeholder="somebody@example.com">
+        </label>
+        <label>Password
+          <input type="text" ng-model="password" placeholder="Password">
+        </label>
+        <input id="show-password" type="checkbox"><label for="show-password">Show password</label>
+        <p><a type="submit" class="button expanded" ng-click='login()'>Log In</a></p>
+        <p class="text-center"><a href="#/guest">Forgot your password?</a></p>
+      </div>
+    </form>
+
+  </div>
+</div>
