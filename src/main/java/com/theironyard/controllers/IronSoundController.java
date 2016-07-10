@@ -49,7 +49,7 @@ public class IronSoundController {
     }
 
     @RequestMapping(path = "/add-song", method = RequestMethod.POST)
-    public void addSong(HttpSession session, Integer trackId) throws Exception {
+    public void addSong(HttpSession session, @RequestBody Song song) throws Exception {
         String username = (String) session.getAttribute("username");
         if (username == null) {
             throw new Exception("Not logged in.");
@@ -58,7 +58,8 @@ public class IronSoundController {
         if (user == null) {
             throw new Exception("User not found.");
         }
-        Song song = new Song(trackId, user);
+        //Song song = new Song(trackId, user);
+        song.setUser(user);
         songs.save(song);
 
         user.setTab(user.getTab() + 1);
