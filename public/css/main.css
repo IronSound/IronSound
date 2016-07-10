@@ -1,4 +1,5 @@
 .button {
+  margin-left: 2rem;
   color: #5c5c5c;
   font-size: 2rem;
   letter-spacing: 3px;
@@ -67,7 +68,9 @@ body {
   font-family: Gotham;
   color: #5c5c5c;
   text-align: center;
-  justify-content: center; }
+  justify-content: center;
+  text-decoration: none;
+  list-style: none; }
 
 .logo {
   background-color: #231f20; }
@@ -79,3 +82,6 @@ body {
 
 li {
   text-decoration: none; }
+
+.menu a {
+  color: black; }

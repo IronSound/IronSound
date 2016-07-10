@@ -5,6 +5,7 @@ let app = angular.module('IronSoundApp', ['ngRoute']);
 require('./controllers/LibraryController.js')(app);
 require('./controllers/LoginController.js')(app);
 require('./controllers/headerController.js')(app);
+require('./controllers/playlistController.js')(app);
 
 // services
 require('./services/libraryService.js')(app);
