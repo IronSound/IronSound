@@ -17,7 +17,6 @@ module.exports = function(app){
           }
         }).then(function(response){
           console.log('getting the response', response);
-          if(response.data.ar){}
         })
       }
     }

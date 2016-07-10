@@ -16,7 +16,6 @@ module.exports = function(app){
           }
         }).then(function(response){
           console.log('adding song from library', response);
-          if(response.data.ar){}
         })
       }
     }

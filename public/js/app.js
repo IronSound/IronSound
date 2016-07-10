@@ -1,21 +1,36 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-module.exports = function (app) {
-    app.controller('LibraryController', ['$scope', 'libraryService', function ($scope, libraryService) {
-        $scope.library = [
-          {artist:"Paul Wood"},
-          {artist:"Paul Wood"},
-          {artist:"Paul Wood"},
-          {artist:"Paul Wood"},
-          {artist:"Paul Wood"},
-          {artist:"Paul Wood"},
-          {artist:"Paul Wood"},
-          {artist:"Paul Wood"},
-          {artist:"Paul Wood"},
-          {artist:"Paul Wood"},
-          {artist:"Paul Wood"},
-        ];
+module.exports = function(app) {
+    app.controller('LibraryController', ['$scope', 'libraryService', function($scope, libraryService) {
+        $scope.library = [{
+            artist: "Paul Wood"
+        }, {
+            artist: "Paul Wood"
+        }, {
+            artist: "Paul Wood"
+        }, {
+            artist: "Paul Wood"
+        }, {
+            artist: "Paul Wood"
+        }, {
+            artist: "Paul Wood"
+        }, {
+            artist: "Paul Wood"
+        }, {
+            artist: "Paul Wood"
+        }, {
+            artist: "Paul Wood"
+        }, {
+            artist: "Paul Wood"
+        }, {
+            artist: "Paul Wood"
+        }, ];
 
-      return  libraryService.addTrack(5)
+        $scope.add = function() {
+            console.log("Adding the song... hopefully")
+            return libraryService.addTrack(5)
+        }
+
+
     }]);
 
 }
@@ -23,25 +38,30 @@ module.exports = function (app) {
 },{}],2:[function(require,module,exports){
 
 module.exports = function (app) {
-    app.controller('LoginController', ['$scope', '$http', '$location', function ($scope, $http, $location) {
+    app.controller('LoginController', ['$scope', '$http', '$location', 'loginService', function ($scope, $http, $location, loginService) {
         $scope.name = '';
-        // $scope.password = '';
+        $scope.password = '';
 
         $scope.login = function () {
             console.log(`${$scope.name} in as we speak`);
 
-            $http({
-                url: '/login',
-                method: 'post',
-                data: {
+            // $http({
+            //     url: '/login',
+            //     method: 'post',
+            //     data: {
+            //         name: $scope.name,
+            //         password: 'password123',
+            //     },
+            // }).then(function () {
+            //     //$location.path('/library');
+            // }).catch(function () {
+            //     console.error('login failed');
+            // });
+
+            loginService.userLogin({
                     name: $scope.name,
                     password: 'password123',
-                },
-            }).then(function () {
-                //$location.path('/library');
-            }).catch(function () {
-                console.error('login failed');
-            });
+                });
             $location.path('/library');
         };
     }]);
@@ -91,7 +111,6 @@ module.exports = function(app){
           }
         }).then(function(response){
           console.log('adding song from library', response);
-          if(response.data.ar){}
         })
       }
     }
@@ -120,7 +139,6 @@ module.exports = function(app){
           }
         }).then(function(response){
           console.log('getting the response', response);
-          if(response.data.ar){}
         })
       }
     }
