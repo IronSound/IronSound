@@ -17,6 +17,12 @@ apply plugin: 'spring-boot'
 jar {
 	baseName = 'IronSound'
 	version = '0.0.1-SNAPSHOT'
+	manifest {
+		attributes(
+				'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+				'Main-Class': 'hello.helloWorld'
+		)
+	}
 }
 sourceCompatibility = 1.8
 targetCompatibility = 1.8

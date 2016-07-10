@@ -61,6 +61,8 @@ public class IronSoundController {
         Song song = new Song(trackId, user);
         songs.save(song);
 
+        user.setTab(user.getTab() + 1);
+
         return "Success.";
     }
 
@@ -103,7 +105,7 @@ public class IronSoundController {
         comment.setUser(user);
         comments.save(comment);
 
-        return "Sucess.";
+        return "Success.";
     }
 
     @RequestMapping(path = "/likes", method = RequestMethod.POST)
