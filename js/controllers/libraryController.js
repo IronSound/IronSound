@@ -1,5 +1,5 @@
 module.exports = function(app) {
-    app.controller('LibraryController', ['$scope', 'libraryService', function($scope, libraryService) {
+    app.controller('LibraryController', ['$scope', 'libraryService', '$location', function($scope, libraryService, $location) {
 
 
         $scope.library = [{
