@@ -1,12 +1,12 @@
 module.exports = function(app){
   //service stores user data
   app.factory('loginService', ['$http', function($http){
-
+    let username = "";
 
     return {
       userLogin: function (name,password,tab){
-        console.log(name, password);
-        $http({
+        username = name;
+        return $http({
           method: 'POST',
           url: '/login',
           data: {
@@ -16,8 +16,13 @@ module.exports = function(app){
           }
         }).then(function(response){
           console.log('getting the response', response);
+          // username = name;
+          console.log(username);
         })
-      }
+      },
+      getUserName: function (){
+        return username;
+      },
     }
 
 
