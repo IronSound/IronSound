@@ -51,6 +51,7 @@ module.exports = function (app) {
 module.exports=function(app){
   app.controller("headerController", ["$scope", "loginService", function ($scope, loginService){
     $scope.name = loginService.getUserName();
+    $scope.tab = loginService.getUserTab();
   }]);
 };
 
@@ -121,10 +122,12 @@ module.exports = function(app){
   //service stores user data
   app.factory('loginService', ['$http', function($http){
     let username = "";
+    let usertab = null;
 
     return {
       userLogin: function (name,password,tab){
         username = name;
+        usertab = tab;
         return $http({
           method: 'POST',
           url: '/login',
@@ -142,6 +145,9 @@ module.exports = function(app){
       getUserName: function (){
         return username;
       },
+      getUserTab: function () {
+        return usertab;
+      }
     }
 
 
