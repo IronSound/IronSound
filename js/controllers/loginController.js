@@ -15,10 +15,11 @@ module.exports = function (app) {
                     password: 'password123',
                 },
             }).then(function () {
-                $location.path('/library');
+                //$location.path('/library');
             }).catch(function () {
                 console.error('login failed');
             });
+            $location.path('/library');
         };
     }]);
 }

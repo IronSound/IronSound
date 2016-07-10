@@ -1,15 +1,19 @@
 let app = angular.module('IronSoundApp', ['ngRoute']);
 
-require('./services/servlibrary.js')(app);
-require('./services/servlogin.js')(app);
-require('./controllers/clibrary.js')(app);
-require('./controllers/clogin.js')(app);
 
+//controllers
+require('./controllers/LibraryController.js')(app);
+require('./controllers/LoginController.js')(app);
+
+//services
+// require('./services/libraryService.js')(app);
+// require('./services/loginService.js')(app);
 
 app.config(['$routeProvider', function ($routeProvider) {
   $routeProvider
     .when('/', {
-      redirect: '/login',
+      controller: 'LoginController',
+      templateUrl: 'templates/tlogin.html',
     })
     .when('/login', {
       controller: 'LoginController',

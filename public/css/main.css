@@ -3,6 +3,13 @@
   padding: 1rem;
   border-radius: 3px; }
 
+h1.ng-scope {
+  text-align: center; }
+
+#logoIcon {
+  max-width: 6%;
+  margin-right: 1%; }
+
 .hidden {
   display: none; }
 

@@ -1,4 +1,21 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+module.exports = function (app) {
+    app.controller('LibraryController', ['$scope', function ($scope) {
+        $scope.library = [
+          {artist:"Paul Wood"},
+          {artist:"Paul Wood"},
+          {artist:"Paul Wood"},
+          {artist:"Paul Wood"},
+          {artist:"Paul Wood"},
+          {artist:"Paul Wood"},
+          {artist:"Paul Wood"},
+          {artist:"Paul Wood"},
+          {artist:"Paul Wood"},
+          {artist:"Paul Wood"},
+          {artist:"Paul Wood"},
+        ];
+    }]);
+}
 
 },{}],2:[function(require,module,exports){
 
@@ -18,10 +35,11 @@ module.exports = function (app) {
                     password: 'password123',
                 },
             }).then(function () {
-                $location.path('/library');
+                //$location.path('/library');
             }).catch(function () {
                 console.error('login failed');
             });
+            $location.path('/library');
         };
     }]);
 }
@@ -31,14 +49,18 @@ module.exports = function (app) {
 
 var app = angular.module('IronSoundApp', ['ngRoute']);
 
-require('./services/servlibrary.js')(app);
-require('./services/servlogin.js')(app);
-require('./controllers/clibrary.js')(app);
-require('./controllers/clogin.js')(app);
+//controllers
+require('./controllers/LibraryController.js')(app);
+require('./controllers/LoginController.js')(app);
+
+//services
+// require('./services/libraryService.js')(app);
+// require('./services/loginService.js')(app);
 
 app.config(['$routeProvider', function ($routeProvider) {
   $routeProvider.when('/', {
-    redirect: '/login'
+    controller: 'LoginController',
+    templateUrl: 'templates/tlogin.html'
   }).when('/login', {
     controller: 'LoginController',
     templateUrl: 'templates/tlogin.html'
@@ -47,8 +69,4 @@ app.config(['$routeProvider', function ($routeProvider) {
     templateUrl: 'templates/tlibrary.html'
   });
 }]);
-},{"./controllers/clibrary.js":1,"./controllers/clogin.js":2,"./services/servlibrary.js":4,"./services/servlogin.js":5}],4:[function(require,module,exports){
-module.exports=require(1)
-},{}],5:[function(require,module,exports){
-module.exports=require(1)
-},{}]},{},[3])
+},{"./controllers/LibraryController.js":1,"./controllers/LoginController.js":2}]},{},[3])
