@@ -48,6 +48,13 @@ module.exports = function (app) {
 }
 
 },{}],3:[function(require,module,exports){
+module.exports=function(app){
+  app.controller("headerController", ["$scope", "loginService", function ($scope, loginService){
+    $scope.name = loginService.getUserName();
+  }]);
+};
+
+},{}],4:[function(require,module,exports){
 'use strict';
 
 var app = angular.module('IronSoundApp', ['ngRoute']);
@@ -55,6 +62,7 @@ var app = angular.module('IronSoundApp', ['ngRoute']);
 //controllers
 require('./controllers/LibraryController.js')(app);
 require('./controllers/LoginController.js')(app);
+require('./controllers/headerController.js')(app);
 
 // services
 require('./services/libraryService.js')(app);
@@ -72,7 +80,7 @@ app.config(['$routeProvider', function ($routeProvider) {
     templateUrl: 'templates/tlibrary.html'
   });
 }]);
-},{"./controllers/LibraryController.js":1,"./controllers/LoginController.js":2,"./services/libraryService.js":4,"./services/loginService.js":5}],4:[function(require,module,exports){
+},{"./controllers/LibraryController.js":1,"./controllers/LoginController.js":2,"./controllers/headerController.js":3,"./services/libraryService.js":5,"./services/loginService.js":6}],5:[function(require,module,exports){
 module.exports = function(app) {
     //service stores user data
     app.factory('libraryService', ['$http', function($http) {
@@ -108,16 +116,20 @@ module.exports = function(app) {
     }])
 }
 
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 module.exports = function(app){
   //service stores user data
   app.factory('loginService', ['$http', function($http){
-
+    let username = "";
 
     return {
       userLogin: function (name,password,tab){
-        console.log(name, password);
-        $http({
+        username = name;
+        // angular.copy(name, username);
+        // console.log('username:', username);
+
+        // console.log(name, password);
+        return $http({
           method: 'POST',
           url: '/login',
           data: {
@@ -127,12 +139,17 @@ module.exports = function(app){
           }
         }).then(function(response){
           console.log('getting the response', response);
+          // username = name;
+          console.log(username);
         })
-      }
+      },
+      getUserName: function (){
+        return username;
+      },
     }
 
 
   }])
 }
 
-},{}]},{},[3])
+},{}]},{},[4])

@@ -1,7 +1,5 @@
 module.exports=function(app){
-  app.controller("headerController", function ($scope){
-    $scope.users = {
-      name: ''
-    };
-  });
+  app.controller("headerController", ["$scope", "loginService", function ($scope, loginService){
+    $scope.name = loginService.getUserName();
+  }]);
 };

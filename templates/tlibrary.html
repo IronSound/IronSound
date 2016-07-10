@@ -1,3 +1,20 @@
+<!-- Medium-Up Navigation -->
+<nav class="top-bar" id="nav-menu">
+
+    <div class="logo-wrapper hide-for-small-only">
+
+    </div>
+
+    <!-- Left Nav Section -->
+    <div class="top-bar-left" ng-controller="headerController">
+        <ul class="vertical medium-horizontal menu">
+            <li><a href="#/login">Login</a></li>
+            <li><a href="#/library">Library</a></li>
+            <li><a href="#/playlist">Playlist</a></li>
+            <li>Welcome {{name}}. Here are your songs for the day....</li>
+        </ul>
+    </div>
+</nav>
 <h2>Todays list of songs:</h2>
 <ul>
   <li ng-repeat="song in library">
