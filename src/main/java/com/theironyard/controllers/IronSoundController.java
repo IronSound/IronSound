@@ -48,7 +48,7 @@ public class IronSoundController {
         return songs.findAll();
     }
 
-    @RequestMapping(path = "/add-song", method = RequestMethod.POST)
+    @RequestMapping(path = "/library", method = RequestMethod.POST)
     public String addSong(HttpSession session, int trackId) throws Exception {
         String username = (String) session.getAttribute("username");
         if (username == null) {
