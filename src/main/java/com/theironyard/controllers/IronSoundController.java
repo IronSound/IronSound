@@ -49,7 +49,7 @@ public class IronSoundController {
     }
 
     @RequestMapping(path = "/library", method = RequestMethod.POST)
-    public String addSong(HttpSession session, int trackId) throws Exception {
+    public void addSong(HttpSession session, int trackId) throws Exception {
         String username = (String) session.getAttribute("username");
         if (username == null) {
             throw new Exception("Not logged in.");
@@ -62,12 +62,10 @@ public class IronSoundController {
         songs.save(song);
 
         user.setTab(user.getTab() + 1);
-
-        return "Success.";
     }
 
     @RequestMapping(path = "delete-song", method = RequestMethod.POST)
-    public String deleteSong(HttpSession session, int id) throws Exception {
+    public void deleteSong(HttpSession session, int id) throws Exception {
         String username = (String) session.getAttribute("username");
         if (username == null) {
             throw new Exception("Not logged in.");
@@ -81,11 +79,11 @@ public class IronSoundController {
         }
         songs.delete(id);
 
-        return "Success.";
+        //user.setTab(user.getTab() - 1); <-- optional ?
     }
 
     @RequestMapping(path = "/add-comment", method = RequestMethod.POST)
-    public String addComment(HttpSession session, @RequestBody Comment comment) throws Exception {
+    public void addComment(HttpSession session, @RequestBody Comment comment) throws Exception {
         String username = (String) session.getAttribute("username");
         if (username == null) {
             throw new Exception("Not logged in.");
@@ -104,12 +102,10 @@ public class IronSoundController {
         comment.setSong(song);
         comment.setUser(user);
         comments.save(comment);
-
-        return "Success.";
     }
 
     @RequestMapping(path = "/likes", method = RequestMethod.POST)
-    public String addLike(HttpSession session, @RequestBody Like like) throws Exception {
+    public void addLike(HttpSession session, @RequestBody Like like) throws Exception {
         String username = (String) session.getAttribute("username");
         if (username == null) {
             throw new Exception("You must be logged in");
@@ -131,12 +127,10 @@ public class IronSoundController {
         like.setSong(song);
         like.setUser(user);
         likes.save(like);
-
-        return "Success.";
     }
 
     @RequestMapping(path = "/login", method = RequestMethod.POST)
-    public String login(HttpSession session, @RequestBody User user) throws Exception {
+    public void login(HttpSession session, @RequestBody User user) throws Exception {
         User userFromDB = users.findByName(user.getName());
         if (userFromDB == null) {
             user.setPassword(PasswordStorage.createHash(user.getPassword()));
@@ -146,8 +140,6 @@ public class IronSoundController {
             throw new Exception("Wrong password.");
         }
         session.setAttribute("username", user.getName());
-
-        return "Successful login.";
     }
 
     @RequestMapping(path = "/logout", method = RequestMethod.POST)
