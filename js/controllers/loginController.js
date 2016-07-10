@@ -8,19 +8,6 @@ module.exports = function (app) {
         $scope.login = function () {
             console.log(`${$scope.name} in as we speak`);
 
-            // $http({
-            //     url: '/login',
-            //     method: 'post',
-            //     data: {
-            //         name: $scope.name,
-            //         password: 'password123',
-            //     },
-            // }).then(function () {
-            //     //$location.path('/library');
-            // }).catch(function () {
-            //     console.error('login failed');
-            // });
-
             loginService.userLogin($scope.name, $scope.password, $scope.tab);
 
             $location.path('/library');
