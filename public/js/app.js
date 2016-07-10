@@ -51,6 +51,26 @@ module.exports = function (app) {
 
 },{}],3:[function(require,module,exports){
 module.exports = function(app) {
+<<<<<<< HEAD
+    app.controller("headerController", ["$scope", "loginService", function($scope, loginService) {
+        $scope.name = loginService.getUserName();
+        $scope.tab = loginService.getUserTab();
+
+// attemping to make the damn tab count
+        // $scope.counter = 0;
+        // $scope.count = function(inc) {
+        //     $scope.counter += inc;
+        // };
+
+        // var app = angular.module("myApp", []);
+        // app.controller('check', function($scope) {
+        //     // $scope.counter = 0;
+        //     // $scope.count = function(inc) {
+        //     //     $scope.counter += inc;
+        //     // };
+        // });
+    }]);
+=======
    app.controller("headerController", ["$scope", "loginService", function($scope, loginService) {
        $scope.name = loginService.getUserName();
        $scope.tab = loginService.getUserTab();
@@ -69,6 +89,7 @@ module.exports = function(app) {
        //     // };
        // });
    }]);
+>>>>>>> ba0d39e781635654ecfb23df1db9a321b0785b74
 };
 
 },{}],4:[function(require,module,exports){
@@ -152,10 +173,12 @@ module.exports = function(app){
   //service stores user data
   app.factory('loginService', ['$http', function($http){
     let username = "";
+    let usertab = null;
 
     return {
       userLogin: function (name,password,tab){
         username = name;
+        usertab = tab;
         return $http({
           method: 'POST',
           url: '/login',
@@ -173,6 +196,9 @@ module.exports = function(app){
       getUserName: function (){
         return username;
       },
+      getUserTab: function () {
+        return usertab;
+      }
     }
 
 
