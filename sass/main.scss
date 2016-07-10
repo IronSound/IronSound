@@ -1,6 +1,7 @@
 @import "library";
 @import "login";
 @import "playlist";
+
 .hidden {
     display: none;
 }
@@ -9,6 +10,8 @@ body {
     color: #5c5c5c;
     text-align: center;
     justify-content: center;
+    text-decoration: none;
+    list-style: none;
 }
 
 .logo {
@@ -19,4 +22,12 @@ body {
     font-family: Gotham;
     padding-bottom: 39px;
     color: #a29266;
+}
+
+li{
+  text-decoration: none;
+}
+
+.menu a{
+  color: black;
 }

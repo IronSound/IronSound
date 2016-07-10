@@ -5,6 +5,7 @@ let app = angular.module('IronSoundApp', ['ngRoute']);
 require('./controllers/LibraryController.js')(app);
 require('./controllers/LoginController.js')(app);
 require('./controllers/headerController.js')(app);
+require('./controllers/playlistController.js')(app);
 
 // services
 require('./services/libraryService.js')(app);
@@ -23,6 +24,10 @@ app.config(['$routeProvider', function ($routeProvider) {
     .when('/library', {
       controller: 'LibraryController',
       templateUrl: 'templates/tlibrary.html',
+    })
+    .when('/playlist', {
+      controller: 'playlistController',
+      templateUrl: 'templates/tplaylist.html',
     })
 
 }])
