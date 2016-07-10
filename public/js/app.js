@@ -8,12 +8,12 @@ module.exports = function(app) {
             song: "Sittin' Sideways",
             trackId: 1,
         }, {
-          artist: "Paul Wall",
-          song: "Sittin' Sideways",
+          artist: "Beyonce",
+          song: "Love on Top",
           trackId: 2,
         }, {
-          artist: "Paul Wall",
-          song: "Sittin' Sideways",
+          artist: "Stevie Wonder",
+          song: "Signed, Sealed, Delivered",
           trackId: 3,
         },
        ];
@@ -51,6 +51,7 @@ module.exports = function (app) {
 
 },{}],3:[function(require,module,exports){
 module.exports = function(app) {
+<<<<<<< HEAD
     app.controller("headerController", ["$scope", "loginService", function($scope, loginService) {
         $scope.name = loginService.getUserName();
         $scope.tab = loginService.getUserTab();
@@ -69,9 +70,38 @@ module.exports = function(app) {
         //     // };
         // });
     }]);
+=======
+   app.controller("headerController", ["$scope", "loginService", function($scope, loginService) {
+       $scope.name = loginService.getUserName();
+       $scope.tab = loginService.getUserTab();
+
+// attemping to make the damn tab count
+       // $scope.counter = 0;
+       // $scope.count = function(inc) {
+       //     $scope.counter += inc;
+       // };
+
+       // var app = angular.module("myApp", []);
+       // app.controller('check', function($scope) {
+       //     // $scope.counter = 0;
+       //     // $scope.count = function(inc) {
+       //     //     $scope.counter += inc;
+       //     // };
+       // });
+   }]);
+>>>>>>> ba0d39e781635654ecfb23df1db9a321b0785b74
 };
 
 },{}],4:[function(require,module,exports){
+module.exports = function(app) {
+    app.controller('playlistController', ['$scope', '$http', '$location', 'libraryService', function($scope, $http, $location, libraryService) {
+        return libraryService.getPlaylist();
+        console.log('heeeeeyy winston', data)
+
+    }]);
+}
+
+},{}],5:[function(require,module,exports){
 'use strict';
 
 var app = angular.module('IronSoundApp', ['ngRoute']);
@@ -80,6 +110,7 @@ var app = angular.module('IronSoundApp', ['ngRoute']);
 require('./controllers/LibraryController.js')(app);
 require('./controllers/LoginController.js')(app);
 require('./controllers/headerController.js')(app);
+require('./controllers/playlistController.js')(app);
 
 // services
 require('./services/libraryService.js')(app);
@@ -100,12 +131,12 @@ app.config(['$routeProvider', function ($routeProvider) {
     templateUrl: 'templates/tplaylist.html'
   });
 }]);
-},{"./controllers/LibraryController.js":1,"./controllers/LoginController.js":2,"./controllers/headerController.js":3,"./services/libraryService.js":5,"./services/loginService.js":6}],5:[function(require,module,exports){
+},{"./controllers/LibraryController.js":1,"./controllers/LoginController.js":2,"./controllers/headerController.js":3,"./controllers/playlistController.js":4,"./services/libraryService.js":6,"./services/loginService.js":7}],6:[function(require,module,exports){
 module.exports = function(app) {
     //service stores user data
     app.factory('libraryService', ['$http', function($http) {
 
-        let addedSongs = [];
+        let songtoadd = [];
 
         return {
             addTrack: function(trackId) {
@@ -127,16 +158,17 @@ module.exports = function(app) {
 
                 }).then(function(song) {
                     console.log('getting song', song);
-                    angular.copy(song, addedSongs);
+                    angular.copy(song, songtoadd);
+                    return songtoadd;
                 })
             },
-        }
 
+        }
 
     }])
 }
 
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 module.exports = function(app){
   //service stores user data
   app.factory('loginService', ['$http', function($http){
@@ -173,4 +205,4 @@ module.exports = function(app){
   }])
 }
 
-},{}]},{},[4])
+},{}]},{},[5])
