@@ -1,15 +1,22 @@
 @import "library";
 @import "login";
 @import "playlist";
-
 .hidden {
-  display: none;
+    display: none;
+}
+body {
+    font-family: Gotham;
+    color: #5c5c5c;
+    text-align: center;
+    justify-content: center;
 }
 
-body {
-	background-color: #ccc;
-  font-family: Gotham;
-  color: #5c5c5c;
-  text-align: center;
-  justify-content: center;
+.logo {
+  background-color: #231f20;
+}
+
+.logo h6 {
+    font-family: Gotham;
+    padding-bottom: 39px;
+    color: #a29266;
 }
