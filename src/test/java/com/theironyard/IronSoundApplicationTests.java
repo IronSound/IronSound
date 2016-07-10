@@ -2,7 +2,10 @@ package com.theironyard;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.theironyard.entities.Comment;
+import com.theironyard.entities.Song;
 import com.theironyard.entities.User;
+import com.theironyard.services.CommentRepository;
 import com.theironyard.services.SongRepository;
 import com.theironyard.services.UserRepository;
 import org.junit.Assert;
@@ -35,6 +38,8 @@ public class IronSoundApplicationTests {
 	UserRepository users;
 	@Autowired
 	SongRepository songs;
+	@Autowired
+	CommentRepository comments;
 
 	MockMvc mockMvc;
 
@@ -59,13 +64,56 @@ public class IronSoundApplicationTests {
 		Assert.assertTrue(users.count() == 1);
 	}
 
-//	@Test
-//	public void bTestAddSong() throws Exception {
-//		aTestLogin();
-//		mockMvc.perform(
-//				MockMvcRequestBuilders.post("/add-song")
-//				.param("trackId", "5")
-//		);
-//		Assert.assertTrue(songs.count() == 1);
-//	}
+	@Test
+	public void bTestAddSong() throws Exception {
+		User user = users.findOne(1);
+		Song song = new Song();
+		song.setTrackId(1);
+		song.setId(1);
+		song.setUser(user);
+		ObjectMapper om = new ObjectMapper();
+		String json = om.writeValueAsString(song);
+		mockMvc.perform(
+				MockMvcRequestBuilders.post("/add-song")
+				.content(json)
+				.contentType("application/json")
+				.sessionAttr("username", "Bob")
+		);
+		Assert.assertTrue(songs.count() == 1);
+	}
+
+	@Test
+	public void cTestAddComment() throws Exception {
+		User user = users.findOne(1);
+		Song song = songs.findOne(1);
+		Comment comment = new Comment();
+		comment.setSong(song);
+		comment.setComment("Test comment.");
+		comment.setUser(user);
+		ObjectMapper objectMapper = new ObjectMapper();
+		String json = objectMapper.writeValueAsString(comment);
+		mockMvc.perform(
+				MockMvcRequestBuilders.post("/add-comment")
+						.content(json)
+						.contentType("application/json")
+						.sessionAttr("username", "Bob")
+
+		);
+		Assert.assertTrue(comments.count() == 1);
+	}
+
+	@Test
+	public void dTestDeleteSong() throws Exception {
+		Song song = songs.findOne(1);
+		ObjectMapper om = new ObjectMapper();
+		String json = om.writeValueAsString(song);
+		mockMvc.perform(
+				MockMvcRequestBuilders.post("/delete-song")
+				.content(json)
+				.contentType("application/json")
+				.sessionAttr("username", "Bob")
+
+		);
+		Assert.assertTrue(songs.count() == 0);
+	}
 }
