@@ -59,13 +59,13 @@ public class IronSoundApplicationTests {
 		Assert.assertTrue(users.count() == 1);
 	}
 
-	@Test
-	public void bTestAddSong() throws Exception {
-		aTestLogin();
-		mockMvc.perform(
-				MockMvcRequestBuilders.post("/add-song")
-				.param("trackId", "5")
-		);
-		Assert.assertTrue(songs.count() == 1);
-	}
+//	@Test
+//	public void bTestAddSong() throws Exception {
+//		aTestLogin();
+//		mockMvc.perform(
+//				MockMvcRequestBuilders.post("/add-song")
+//				.param("trackId", "5")
+//		);
+//		Assert.assertTrue(songs.count() == 1);
+//	}
 }
