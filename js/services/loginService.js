@@ -13,7 +13,7 @@ module.exports = function(app){
           method: 'POST',
           url: '/login',
           data: {
-            username: name,
+            name: name,
             password: password,
             tab: 0,
           }
