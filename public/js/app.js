@@ -41,6 +41,7 @@ module.exports = function (app) {
     app.controller('LoginController', ['$scope', '$http', '$location', 'loginService', function ($scope, $http, $location, loginService) {
         $scope.name = '';
         $scope.password = '';
+        $scope.tab = 0;
 
         $scope.login = function () {
             console.log(`${$scope.name} in as we speak`);
@@ -58,10 +59,8 @@ module.exports = function (app) {
             //     console.error('login failed');
             // });
 
-            loginService.userLogin({
-                    name: $scope.name,
-                    password: 'password123',
-                });
+            loginService.userLogin($scope.name, $scope.password, $scope.tab);
+
             $location.path('/library');
         };
     }]);
@@ -129,13 +128,15 @@ module.exports = function(app){
 
 
     return {
-      userLogin: function (name,password){
+      userLogin: function (name,password,tab){
+        console.log(name, password);
         $http({
           method: 'POST',
           url: '/login',
           data: {
             username: name,
             password: password,
+            tab: 0,
           }
         }).then(function(response){
           console.log('getting the response', response);
