@@ -27,6 +27,8 @@ module.exports = function(app) {
         libraryService.getPlaylist();
 
 
+
+
     }]);
 
 }
@@ -125,10 +127,6 @@ module.exports = function(app){
     return {
       userLogin: function (name,password,tab){
         username = name;
-        // angular.copy(name, username);
-        // console.log('username:', username);
-
-        // console.log(name, password);
         return $http({
           method: 'POST',
           url: '/login',
