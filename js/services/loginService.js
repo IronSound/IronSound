@@ -1,7 +1,4 @@
 module.exports = function(app){
-
-
-
   //service stores user data
   app.factory('loginService', ['$http', function($http){
 
