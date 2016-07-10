@@ -6,6 +6,7 @@ import com.theironyard.entities.Comment;
 import com.theironyard.entities.Song;
 import com.theironyard.entities.User;
 import com.theironyard.services.CommentRepository;
+import com.theironyard.services.LikeRepository;
 import com.theironyard.services.SongRepository;
 import com.theironyard.services.UserRepository;
 import org.junit.Assert;
@@ -40,6 +41,8 @@ public class IronSoundApplicationTests {
 	SongRepository songs;
 	@Autowired
 	CommentRepository comments;
+	@Autowired
+	LikeRepository likes;
 
 	MockMvc mockMvc;
 
@@ -88,6 +91,7 @@ public class IronSoundApplicationTests {
 		Song song = songs.findOne(1);
 		Comment comment = new Comment();
 		comment.setSong(song);
+		comment.setSongId(1);
 		comment.setComment("Test comment.");
 		comment.setUser(user);
 		ObjectMapper objectMapper = new ObjectMapper();

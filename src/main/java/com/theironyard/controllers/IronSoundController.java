@@ -79,6 +79,9 @@ public class IronSoundController {
         if (!user.getName().equals(songs.findOne(song.getId()).getUser().getName())) {
             throw new Exception("You may only delete your own songs.");
         }
+        // must delete comments and likes belonging to song first:
+        likes.delete(likes.findBySong(song));
+        comments.delete(comments.findBySong(song));
         songs.delete(song);
 
         //user.setTab(user.getTab() - 1); <-- optional ?
