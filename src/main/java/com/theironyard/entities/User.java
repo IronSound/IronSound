@@ -18,12 +18,16 @@ public class User {
     @Column(nullable = false)
     String password;
 
+    @Column(nullable = false)
+    int tab;
+
     public User() {
     }
 
-    public User(String name, String password) {
+    public User(String name, String password, int tab) {
         this.name = name;
         this.password = password;
+        this.tab = tab;
     }
 
     public int getId() {
@@ -48,5 +52,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public int getTab() {
+        return tab;
+    }
+
+    public void setTab(int tab) {
+        this.tab = tab;
     }
 }
