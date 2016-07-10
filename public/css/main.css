@@ -46,6 +46,9 @@ h1.ng-scope {
     .top-bar-left ul {
       float: right; } }
 
+.top-bar {
+  background-color: #231f20; }
+
 .hidden {
   display: none; }
 

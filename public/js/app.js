@@ -1,6 +1,6 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 module.exports = function (app) {
-    app.controller('LibraryController', ['$scope', function ($scope) {
+    app.controller('LibraryController', ['$scope', 'libraryService', function ($scope, libraryService) {
         $scope.library = [
           {artist:"Paul Wood"},
           {artist:"Paul Wood"},
@@ -14,6 +14,12 @@ module.exports = function (app) {
           {artist:"Paul Wood"},
           {artist:"Paul Wood"},
         ];
+
+
+          $scope.add = function () {
+            console.log('adding a song')
+            return libraryService.addTrack(5);
+          }
     }]);
 }
 
@@ -22,7 +28,7 @@ module.exports = function (app) {
 module.exports = function (app) {
     app.controller('LoginController', ['$scope', '$http', '$location', function ($scope, $http, $location) {
         $scope.name = '';
-        // $scope.password = '';
+        $scope.password = '';
 
         $scope.login = function () {
             console.log(`${$scope.name} in as we speak`);
