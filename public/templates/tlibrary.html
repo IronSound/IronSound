@@ -18,6 +18,6 @@
 <h2>Todays list of songs:</h2>
 <ul>
   <li ng-repeat="song in library">
-    <p>{{ song.artist }}{{song.song}}<a type="submit" class="button" ng-click='add(song)'>Add</a></p>
+    <p>{{ song.artist }}{{song.song}}<a type="submit" class="button" ng-click='add(song); count(1)' >Add</a></p>
   </li>
 </ul>

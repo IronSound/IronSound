@@ -27,6 +27,8 @@ module.exports = function(app) {
         libraryService.getPlaylist();
 
 
+
+
     }]);
 
 }
@@ -48,11 +50,25 @@ module.exports = function (app) {
 }
 
 },{}],3:[function(require,module,exports){
-module.exports=function(app){
-  app.controller("headerController", ["$scope", "loginService", function ($scope, loginService){
-    $scope.name = loginService.getUserName();
-    $scope.tab = loginService.getUserTab();
-  }]);
+module.exports = function(app) {
+    app.controller("headerController", ["$scope", "loginService", function($scope, loginService) {
+        $scope.name = loginService.getUserName();
+        $scope.tab = loginService.getUserTab();
+
+// attemping to make the damn tab count
+        // $scope.counter = 0;
+        // $scope.count = function(inc) {
+        //     $scope.counter += inc;
+        // };
+
+        // var app = angular.module("myApp", []);
+        // app.controller('check', function($scope) {
+        //     // $scope.counter = 0;
+        //     // $scope.count = function(inc) {
+        //     //     $scope.counter += inc;
+        //     // };
+        // });
+    }]);
 };
 
 },{}],4:[function(require,module,exports){
@@ -79,6 +95,9 @@ app.config(['$routeProvider', function ($routeProvider) {
   }).when('/library', {
     controller: 'LibraryController',
     templateUrl: 'templates/tlibrary.html'
+  }).when('/playlist', {
+    controller: 'playlistController',
+    templateUrl: 'templates/tplaylist.html'
   });
 }]);
 },{"./controllers/LibraryController.js":1,"./controllers/LoginController.js":2,"./controllers/headerController.js":3,"./services/libraryService.js":5,"./services/loginService.js":6}],5:[function(require,module,exports){

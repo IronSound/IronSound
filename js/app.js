@@ -24,5 +24,9 @@ app.config(['$routeProvider', function ($routeProvider) {
       controller: 'LibraryController',
       templateUrl: 'templates/tlibrary.html',
     })
+    .when('/playlist', {
+      controller: 'playlistController',
+      templateUrl: 'templates/tplaylist.html',
+    })
 
 }])
