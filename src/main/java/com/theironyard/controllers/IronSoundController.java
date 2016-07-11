@@ -121,7 +121,7 @@ public class IronSoundController {
             throw new Exception("Cannot find the user in the database");
         }
 
-        Song song = songs.findOne(like.getLikeid());
+        Song song = songs.findOne(like.getSongId());
         if (song == null) {
             throw new Exception("Song does not exist");
         }
