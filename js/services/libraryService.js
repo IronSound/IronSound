@@ -1,7 +1,6 @@
 module.exports = function(app) {
     //service stores user data
     app.factory('libraryService', ['$http', function($http) {
-
         let songtoadd = [];
 
         return {
@@ -12,8 +11,6 @@ module.exports = function(app) {
                     data: {
                         trackId: trackId
                     }
-                }).then(function(song) {
-                    console.log('adding song from library', song);
                 })
             },
 
@@ -23,8 +20,8 @@ module.exports = function(app) {
                     url: '/songs',
 
                 }).then(function(song) {
-                    console.log('getting song', song);
-                    angular.copy(song, songtoadd);
+                    console.log('getting song', song.data);
+                    angular.copy(song.data, songtoadd);
                     return songtoadd;
                 })
             },
