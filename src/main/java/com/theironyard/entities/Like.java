@@ -22,15 +22,16 @@ public class Like {
     Song song;
 
     @Transient
-    Integer likeid;
+    int songId;
 
     public Like() {
     }
 
-    public Like(boolean goodsong, User user, Song song) {
+    public Like(boolean goodsong, User user, Song song, int songId) {
         this.goodsong = goodsong;
         this.user = user;
         this.song = song;
+        this.songId = songId;
     }
 
     public int getId() {
@@ -65,11 +66,11 @@ public class Like {
         this.song = song;
     }
 
-    public Integer getLikeid() {
-        return likeid;
+    public int getSongId() {
+        return songId;
     }
 
-    public void setLikeid(Integer likeid) {
-        this.likeid = likeid;
+    public void setSongId(int songId) {
+        this.songId = songId;
     }
 }
