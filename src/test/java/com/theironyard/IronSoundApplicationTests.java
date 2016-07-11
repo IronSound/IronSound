@@ -3,6 +3,7 @@ package com.theironyard;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.theironyard.entities.Comment;
+import com.theironyard.entities.Like;
 import com.theironyard.entities.Song;
 import com.theironyard.entities.User;
 import com.theironyard.services.CommentRepository;
@@ -107,7 +108,27 @@ public class IronSoundApplicationTests {
 	}
 
 	@Test
-	public void dTestDeleteSong() throws Exception {
+	public void dTestAddLike() throws Exception {
+		User user = users.findOne(1);
+		Song song = songs.findOne(1);
+		Like like = new Like();
+		like.setUser(user);
+		like.setSong(song);
+		like.setSongId(song.getId());
+		like.setGoodsong(true);
+		ObjectMapper om = new ObjectMapper();
+		String json = om.writeValueAsString(like);
+		mockMvc.perform(
+				MockMvcRequestBuilders.post("/likes")
+				.content(json)
+				.contentType("application/json")
+				.sessionAttr("username", "Bob")
+		);
+		Assert.assertTrue(likes.count() == 1);
+	}
+
+	@Test
+	public void eTestDeleteSong() throws Exception {
 		Song song = songs.findOne(1);
 		ObjectMapper om = new ObjectMapper();
 		String json = om.writeValueAsString(song);
