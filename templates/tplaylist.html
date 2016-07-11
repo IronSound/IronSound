@@ -1,14 +1,10 @@
 
 <div class="grid-block align-center" ng-controller="playlistController">
-  <h3>Songs Added</h3>
-
-
+  <h3>Player</h3>
+  <div id="tester"></div>
   <ul>
-    <li>track id here</li>
     <li ng-repeat="track in playlist">
-      <p>{{ track.id }}</p>
-      <p>$index</p>
+      <p>{{ track.trackId }}</p>
     </li>
   </ul>
-
 </div>
