@@ -3,7 +3,7 @@ module.exports = function(app) {
         $scope.name = loginService.getUserName();
         $scope.tab = loginService.getUserTab();
 
-// attemping to make the damn tab count
+// attemping to make the tab count
         // $scope.counter = 0;
         // $scope.count = function(inc) {
         //     $scope.counter += inc;

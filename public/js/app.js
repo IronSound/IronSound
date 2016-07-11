@@ -52,7 +52,7 @@ module.exports = function(app) {
         $scope.name = loginService.getUserName();
         $scope.tab = loginService.getUserTab();
 
-// attemping to make the damn tab count
+// attemping to make the tab count
         // $scope.counter = 0;
         // $scope.count = function(inc) {
         //     $scope.counter += inc;
@@ -71,23 +71,37 @@ module.exports = function(app) {
 
 },{}],4:[function(require,module,exports){
 module.exports = function(app) {
-    app.controller('playlistController', ['$scope', '$http', '$location', 'libraryService', function($scope, $http, $location, libraryService) {
+    app.controller('playlistController', ['$scope', '$sce', '$http', '$location', 'libraryService', function($scope, $sce, $http, $location, libraryService) {
+console.log('runninnnng');
+      // $scope.player =  $sce.trustAsHtml('<iframe id="tester" width="100%" height="400" scrolling="no" frameborder="no"></iframe>');;
+      // $scope.player = $sce.trustAsHtml('<iframe width="100%" height="400" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?visual=true&url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F13158665&show_artwork=true"></iframe>');
+      // $scope.player = '<iframe width="100%" height="400" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?visual=true&url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F13158665&show_artwork=true"></iframe>';
+      // console.log($scope.player);
         $scope.playlist = libraryService.getPlaylist();
-
-
-        return libraryService.getPlaylist();
-        $scope.tracks = function() {
-          console.log('help');
-          $scope.playlist = libraryService.getPlaylist();
-        }
-
+        // $scope.player = libraryService.getPlayer();
+        libraryService.getPlayer().then(function (embed) {
+            document.getElementById('tester').innerHTML = embed.html;
+            // console.log(embed.html);
+            // $scope.player = embed.html;
+            // console.log($scope.player);
+            // $scope.player = "<h1>hello</h1>";
+            // $scope.player = $sce.trustAsHtml(embed.html);
+            // $scope.player = $sce.trustAsHtml('<h1>ahoy</h1>');
+            // $scope.player = '<h1>ahoy</h1>';
+            // $scope.player = $sce.trustAsHtml('<iframe width="100%" height="400" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?visual=true&url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F13158665&show_artwork=true"></iframe>');
+        });
     }]);
 }
 
 },{}],5:[function(require,module,exports){
 'use strict';
 
-var app = angular.module('IronSoundApp', ['ngRoute']);
+var app = angular.module('IronSoundApp', ['ngRoute', 'ngSanitize']);
+
+SC.initialize({
+  client_id: 'e852657b139c9de2698653ec21dc2f2b'
+
+});
 
 //controllers
 require('./controllers/LibraryController.js')(app);
@@ -117,10 +131,34 @@ app.config(['$routeProvider', function ($routeProvider) {
 },{"./controllers/LibraryController.js":1,"./controllers/LoginController.js":2,"./controllers/headerController.js":3,"./controllers/playlistController.js":4,"./services/libraryService.js":6,"./services/loginService.js":7}],6:[function(require,module,exports){
 module.exports = function(app) {
     //service stores user data
+
+    // var track_url = 'http://api.soundcloud.com/tracks/13158665?client_id=e852657b139c9de2698653ec21dc2f2b';
+    // SC.oEmbed(track_url, { auto_play: true }).then(function(oEmbed) {
+    //  console.log('oEmbed response: ', oEmbed);
+    // });
+
+
     app.factory('libraryService', ['$http', function($http) {
         let songtoadd = [];
+        let html = "";
 
         return {
+
+            getPlayer:function(){
+
+              return SC.get('/tracks/107156209')
+              .then(function(song){
+                console.log(song);
+                return SC.oEmbed(song.permalink_url);
+              })
+              .then(function(oEmbed){
+                console.log(oEmbed)
+                // angular.copy(oEmbed.html,html);
+
+                return oEmbed;
+              });
+              // return html;
+            },
             addTrack: function(trackId) {
                 $http({
                     method: 'POST',
@@ -139,8 +177,17 @@ module.exports = function(app) {
                 }).then(function(song) {
                     console.log('getting song', song.data);
                     angular.copy(song.data, songtoadd);
-                    return songtoadd;
-                })
+                    console.log(SC);
+                    return { trackId: 268158450};
+                    // need to return actual trackId, cheatingggg
+                });
+                // .then(function(song){
+                //   return SC.stream('/tracks/'+song.trackId)
+                // }).then(function(player){
+                //   console.log(player);
+                //   player.play();
+                // });
+                return songtoadd;
             },
 
         }

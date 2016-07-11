@@ -1,4 +1,10 @@
-let app = angular.module('IronSoundApp', ['ngRoute']);
+let app = angular.module('IronSoundApp', ['ngRoute', 'ngSanitize']);
+
+
+SC.initialize({
+ client_id: 'e852657b139c9de2698653ec21dc2f2b'
+
+});
 
 
 //controllers
