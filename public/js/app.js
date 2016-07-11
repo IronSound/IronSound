@@ -72,13 +72,14 @@ module.exports = function(app) {
 },{}],4:[function(require,module,exports){
 module.exports = function(app) {
     app.controller('playlistController', ['$scope', '$http', '$location', 'libraryService', function($scope, $http, $location, libraryService) {
+        $scope.playlist = libraryService.getPlaylist();
 
-        // libraryService.getNewPlaylist();
-
-        // $scope.playlist = libraryService.getNewPlaylist();
 
         return libraryService.getPlaylist();
-        console.log('heeeeeyy winston', data);
+        $scope.tracks = function() {
+          console.log('help');
+          $scope.playlist = libraryService.getPlaylist();
+        }
 
     }]);
 }
@@ -117,7 +118,6 @@ app.config(['$routeProvider', function ($routeProvider) {
 module.exports = function(app) {
     //service stores user data
     app.factory('libraryService', ['$http', function($http) {
-        let newplaylist = [];
         let songtoadd = [];
 
         return {
@@ -128,10 +128,6 @@ module.exports = function(app) {
                     data: {
                         trackId: trackId
                     }
-                }).then(function(song) {
-                    newplaylist = song.data;
-                    console.log('adding song from library', song);
-                    console.log("ummmmmm", newplaylist);
                 })
             },
 
@@ -141,8 +137,8 @@ module.exports = function(app) {
                     url: '/songs',
 
                 }).then(function(song) {
-                    console.log('getting song', song);
-                    angular.copy(song, songtoadd);
+                    console.log('getting song', song.data);
+                    angular.copy(song.data, songtoadd);
                     return songtoadd;
                 })
             },
