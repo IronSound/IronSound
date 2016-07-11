@@ -2,6 +2,7 @@
 module.exports = function(app) {
     app.controller('LibraryController', ['$scope', 'libraryService', '$location', function($scope, libraryService, $location) {
 
+        $scope.playlist = libraryService.getPlaylist();
 
         $scope.library = [{
             artist: "Paul Wall",
@@ -23,10 +24,6 @@ module.exports = function(app) {
             libraryService.addTrack(song.trackId);
             $location.path('/playlist');
         }
-
-        libraryService.getPlaylist();
-
-
 
 
     }]);
@@ -51,7 +48,6 @@ module.exports = function (app) {
 
 },{}],3:[function(require,module,exports){
 module.exports = function(app) {
-<<<<<<< HEAD
     app.controller("headerController", ["$scope", "loginService", function($scope, loginService) {
         $scope.name = loginService.getUserName();
         $scope.tab = loginService.getUserTab();
@@ -70,33 +66,19 @@ module.exports = function(app) {
         //     // };
         // });
     }]);
-=======
-   app.controller("headerController", ["$scope", "loginService", function($scope, loginService) {
-       $scope.name = loginService.getUserName();
-       $scope.tab = loginService.getUserTab();
 
-// attemping to make the damn tab count
-       // $scope.counter = 0;
-       // $scope.count = function(inc) {
-       //     $scope.counter += inc;
-       // };
-
-       // var app = angular.module("myApp", []);
-       // app.controller('check', function($scope) {
-       //     // $scope.counter = 0;
-       //     // $scope.count = function(inc) {
-       //     //     $scope.counter += inc;
-       //     // };
-       // });
-   }]);
->>>>>>> ba0d39e781635654ecfb23df1db9a321b0785b74
 };
 
 },{}],4:[function(require,module,exports){
 module.exports = function(app) {
     app.controller('playlistController', ['$scope', '$http', '$location', 'libraryService', function($scope, $http, $location, libraryService) {
+
+        // libraryService.getNewPlaylist();
+
+        // $scope.playlist = libraryService.getNewPlaylist();
+
         return libraryService.getPlaylist();
-        console.log('heeeeeyy winston', data)
+        console.log('heeeeeyy winston', data);
 
     }]);
 }
@@ -135,7 +117,7 @@ app.config(['$routeProvider', function ($routeProvider) {
 module.exports = function(app) {
     //service stores user data
     app.factory('libraryService', ['$http', function($http) {
-
+        let newplaylist = [];
         let songtoadd = [];
 
         return {
@@ -147,7 +129,9 @@ module.exports = function(app) {
                         trackId: trackId
                     }
                 }).then(function(song) {
+                    newplaylist = song.data;
                     console.log('adding song from library', song);
+                    console.log("ummmmmm", newplaylist);
                 })
             },
 

@@ -1,6 +1,7 @@
 module.exports = function(app) {
     app.controller('LibraryController', ['$scope', 'libraryService', '$location', function($scope, libraryService, $location) {
 
+        $scope.playlist = libraryService.getPlaylist();
 
         $scope.library = [{
             artist: "Paul Wall",
@@ -22,10 +23,6 @@ module.exports = function(app) {
             libraryService.addTrack(song.trackId);
             $location.path('/playlist');
         }
-
-        libraryService.getPlaylist();
-
-
 
 
     }]);
