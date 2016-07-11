@@ -63,10 +63,11 @@ public class IronSoundController {
         songs.save(song);
 
         user.setTab(user.getTab() + 1);
+        users.save(user);
     }
 
     @RequestMapping(path = "delete-song", method = RequestMethod.POST)
-    public void deleteSong(HttpSession session, int id) throws Exception {
+    public void deleteSong(HttpSession session, @RequestBody Song song) throws Exception {
         String username = (String) session.getAttribute("username");
         if (username == null) {
             throw new Exception("Not logged in.");
@@ -75,10 +76,13 @@ public class IronSoundController {
         if (user == null) {
             throw new Exception("User not found.");
         }
-        if (!user.getName().equals(songs.findOne(id).getUser().getName())) {
+        if (!user.getName().equals(songs.findOne(song.getId()).getUser().getName())) {
             throw new Exception("You may only delete your own songs.");
         }
-        songs.delete(id);
+        // must delete comments and likes belonging to song first:
+        likes.delete(likes.findBySong(song));
+        comments.delete(comments.findBySong(song));
+        songs.delete(song);
 
         //user.setTab(user.getTab() - 1); <-- optional ?
     }
